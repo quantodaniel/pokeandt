@@ -1,60 +1,32 @@
-import { useNavigate } from "react-router-dom";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import SearchResultRow from "src/components/molecules/SearchResultRow";
+import { PokemonItem } from "src/types/pokemon";
 
 type SearchInputProps = {
-  onSearch?: (item: any) => void;
+  items: PokemonItem[];
+  onSearch?: (value: string) => void;
+  onSelect?: (pokemon: PokemonItem) => void;
 };
 
 const SearchInput = (props: SearchInputProps) => {
-  const { onSearch } = props;
-
-  const navigate = useNavigate();
-
-  const items = [
-    {
-      id: 1,
-      name: "Bulbasaur",
-    },
-    {
-      id: 2,
-      name: "venusaur",
-    },
-  ];
-
-  const onSelect = (item) => {
-    navigate(`/search/pokemon/${item.name.toLowerCase()}`);
-  };
-
-  const formatResult = (item) => {
-    const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.id}.png`;
-
-    return (
-      <div className="flex items-center cursor-pointer">
-        <div>
-          <img src={src} alt={item.name} />
-        </div>
-        <div>
-          <h1 className="text-xl capitalize">{item.name}</h1>
-        </div>
-      </div>
-    );
-  };
+  const { onSelect, onSearch, items } = props;
 
   return (
-    <ReactSearchAutocomplete
-      items={items}
-      formatResult={formatResult}
-      fuseOptions={{ keys: ["name"], shouldSort: true }}
-      onSelect={onSelect}
-      onSearch={onSearch}
-      placeholder="Search"
-      showNoResults={false}
-      showIcon={false}
-      styling={{
-        hoverBackgroundColor: "#f5f5f5",
-        boxShadow: "none",
-      }}
-    />
+    <div className="search-input">
+      <ReactSearchAutocomplete
+        items={items}
+        formatResult={SearchResultRow}
+        onSelect={onSelect}
+        onSearch={onSearch}
+        placeholder="Search"
+        showNoResults={false}
+        showIcon={false}
+        styling={{
+          hoverBackgroundColor: "#f5f5f5",
+          boxShadow: "none",
+        }}
+      />
+    </div>
   );
 };
 
