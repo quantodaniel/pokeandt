@@ -46,6 +46,10 @@ const persistedStore = persist<PokemonStore>(
           state.favorites = state.pokemons.filter(
             (pokemon) => pokemon.isFavorite
           );
+
+          if (state.compare?.pokemon.id === id) {
+            state.compare.pokemon.isFavorite = !isFavorite;
+          }
         })
       ),
 
