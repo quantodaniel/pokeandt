@@ -8,7 +8,7 @@ const CardDetailStats = (props: CardDetailStatsProps) => {
   const { stats } = props;
 
   return (
-    <div className="flex flex-col shadow rounded p-4 gap-2 from-slate-50 to-slate-100 bg-gradient-to-br col-span-5">
+    <div className="flex flex-col shadow rounded p-4 gap-2 from-slate-50 to-slate-100 bg-gradient-to-br">
       {stats.map((stat) => {
         return (
           <div key={stat.stat.name} className="flex items-center gap-2">

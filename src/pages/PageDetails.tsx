@@ -1,44 +1,35 @@
 import { Pokemon } from "pokenode-ts";
 import { useLoaderData } from "react-router-dom";
-import Button from "src/components/atoms/Button";
-import ButtonFavorite from "src/components/molecules/ButtonFavorite";
-import CardDetailHeader from "src/components/molecules/CardDetailHeader";
-import CardDetailStats from "src/components/molecules/CardDetailStats";
+import PokemonDetails from "src/components/organisms/PokemonDetails";
 import usePokemonStore from "src/store/pokemon";
 
-const PokemonDetails = () => {
+const PageDetails = () => {
   const details = useLoaderData() as Pokemon;
   const pokemon = usePokemonStore((state) =>
     state.getPokemonByName(details.name)
   );
 
-  return (
-    <div
-      className="p-10 h-full"
-      style={{
-        backgroundImage: `radial-gradient(circle at 100% 0%, ${pokemon.color}, rgb(248 250 252) 80%)`,
-      }}
-    >
-      <div className="flex gap-4 mb-4">
-        <ButtonFavorite id={pokemon.id} isFavorite={pokemon.isFavorite} />
-        <Button>Compare</Button>
-      </div>
+  const compareData = usePokemonStore((state) => state.compare);
+  const showCompare = compareData && compareData.pokemon.id !== pokemon.id;
 
-      <div className="grid grid-cols-10">
-        <CardDetailHeader details={details} />
-
-        <div className="col-span-5 flex justify-end">
-          <div className="w-full md:w-2/4">
-            <img src={pokemon.src} alt={pokemon.name} width="100%" />
-          </div>
+  if (showCompare) {
+    return (
+      <div className="h-full grid grid-cols-10">
+        <div className="col-span-5">
+          <PokemonDetails {...compareData} shrink />
+        </div>
+        <div className="col-span-5">
+          <PokemonDetails pokemon={pokemon} details={details} shrink />
         </div>
       </div>
+    );
+  }
 
-      <div className="grid grid-cols-10">
-        <CardDetailStats stats={details.stats} />
-      </div>
+  return (
+    <div className="h-full">
+      <PokemonDetails pokemon={pokemon} details={details} />
     </div>
   );
 };
 
-export default PokemonDetails;
+export default PageDetails;

@@ -6,6 +6,7 @@ import { Pokemon } from "pokenode-ts";
 import { FastAverageColor } from "fast-average-color";
 
 import { produce } from "immer";
+import { PokemonItem } from "src/types/pokemon";
 
 const fac = new FastAverageColor();
 
@@ -13,10 +14,25 @@ const persistedStore = persist<PokemonStore>(
   (set, get) => ({
     pokemons: [],
     favorites: [],
+    compare: undefined,
 
     getPokemonByName: (name: string) => {
       return get().pokemons.find((pokemon) => pokemon.name === name);
     },
+
+    addToCompare: (pokemon: PokemonItem, details: Pokemon) =>
+      set(
+        produce((state: PokemonStore) => {
+          state.compare = { pokemon, details };
+        })
+      ),
+
+    removeFromCompare: () =>
+      set(
+        produce((state: PokemonStore) => {
+          state.compare = undefined;
+        })
+      ),
 
     toggleFavoriteById: (id: number) =>
       set(
