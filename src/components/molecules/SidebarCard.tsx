@@ -33,7 +33,7 @@ const SidebarCard = (props: PokemonItem) => {
       </div>
 
       <div className="absolute right-3 top-3">
-        <ButtonFavorite id={id} icon isFavorite={isFavorite} />
+        <ButtonFavorite id={id} isFavorite={isFavorite} icon />
       </div>
     </Link>
   );

@@ -10,7 +10,7 @@ export const removeTrailingSlash = (url: string) => {
   return url.replace(/\/$/, "");
 };
 
-export const extractPokemonId = (url: string) => {
+export const extractIdFromUrl = (url: string) => {
   return Number(removeTrailingSlash(url).split("/").pop());
 };
 
@@ -22,7 +22,7 @@ export const formatPokemonList = (
   pokemonList: PokemonResponse[]
 ): PokemonItem[] => {
   return pokemonList.map((pokemon) => {
-    const pokemonId = extractPokemonId(pokemon.url);
+    const pokemonId = extractIdFromUrl(pokemon.url);
 
     return {
       ...pokemon,
