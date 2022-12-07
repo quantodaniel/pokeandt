@@ -1,19 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
+import loadDataForRoutes from "src/loaders/routes";
 import Dashboard from "src/pages/Dashboard";
+import EmptyState from "src/pages/EmptyState";
 import Home from "src/pages/Home";
 import Pokemon from "src/pages/Pokemon";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    index: true,
     element: <Home />,
+    loader: loadDataForRoutes,
   },
   {
-    path: "/:type/pokemon",
+    path: "/:filterType",
     element: <Dashboard />,
+    loader: loadDataForRoutes,
     children: [
       {
-        path: "*",
+        index: true,
+        element: <EmptyState />,
+      },
+      {
+        path: ":pokemonName",
         element: <Pokemon />,
       },
     ],
