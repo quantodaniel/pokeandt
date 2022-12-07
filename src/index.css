@@ -10,3 +10,11 @@ body {
   height: calc(100vh / 2 - 80px);
   @apply overflow-y-auto;
 }
+
+.search-input li.selected {
+  @apply text-green-600;
+}
+
+aside .search-input ul {
+  height: calc(100vh - 200px); 
+}

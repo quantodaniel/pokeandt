@@ -22,8 +22,9 @@ const SearchInput = (props: SearchInputProps) => {
         showNoResults={false}
         showIcon={false}
         styling={{
-          hoverBackgroundColor: "#f5f5f5",
+          hoverBackgroundColor: "transparent",
           boxShadow: "none",
+          zIndex: 1,
         }}
       />
     </div>
