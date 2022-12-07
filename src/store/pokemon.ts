@@ -5,40 +5,47 @@ import { PokemonStore } from "src/types/store";
 import { Pokemon } from "pokenode-ts";
 import { FastAverageColor } from "fast-average-color";
 
+import { produce } from "immer";
+
 const fac = new FastAverageColor();
 
 const persistedStore = persist<PokemonStore>(
   (set, get) => ({
     pokemons: [],
     favorites: [],
+
     getPokemonByName: (name: string) => {
       return get().pokemons.find((pokemon) => pokemon.name === name);
     },
-    toggleFavoriteById: (id: number) => {
-      const newPokemons = [...get().pokemons];
-      const pokemonIndex = newPokemons.findIndex(
-        (pokemon) => pokemon.id === id
-      );
 
-      const isFavorite = newPokemons[pokemonIndex].isFavorite;
-      newPokemons[pokemonIndex].isFavorite = !isFavorite;
+    toggleFavoriteById: (id: number) =>
+      set(
+        produce((state: PokemonStore) => {
+          const pokemonIndex = state.pokemons.findIndex(
+            (pokemon) => pokemon.id === id
+          );
 
-      const favorites = newPokemons.filter((pokemon) => pokemon.isFavorite);
+          const isFavorite = state.pokemons[pokemonIndex].isFavorite;
+          state.pokemons[pokemonIndex].isFavorite = !isFavorite;
+          state.favorites = state.pokemons.filter(
+            (pokemon) => pokemon.isFavorite
+          );
+        })
+      ),
 
-      set({ pokemons: newPokemons, favorites });
-    },
-    updatePokemonDetails: (details: Pokemon) => {
-      const newPokemons = [...get().pokemons];
-      const pokemonIndex = newPokemons.findIndex(
-        (pokemon) => pokemon.id === details.id
-      );
+    updatePokemonDetails: (details: Pokemon) =>
+      set(
+        produce((state: PokemonStore) => {
+          const pokemonIndex = state.pokemons.findIndex(
+            (pokemon) => pokemon.id === details.id
+          );
 
-      newPokemons[pokemonIndex].details = {
-        types: details.types,
-      };
+          state.pokemons[pokemonIndex].details = {
+            types: details.types,
+          };
+        })
+      ),
 
-      set({ pokemons: newPokemons });
-    },
     updatePokemonColor: async () => {
       const newPokemons = [...get().pokemons];
 
