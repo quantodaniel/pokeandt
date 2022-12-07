@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 body {
-    @apply bg-slate-50;
+  @apply bg-slate-50;
+}
+
+.search-input ul {
+  height: calc(100vh / 2 - 80px);
+  @apply overflow-y-auto;
 }
