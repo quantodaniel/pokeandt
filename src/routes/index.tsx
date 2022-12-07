@@ -1,30 +1,30 @@
 import { createBrowserRouter } from "react-router-dom";
 import loadDataForDetails from "src/loaders/details";
 import loadDataForRoutes from "src/loaders/routes";
-import Dashboard from "src/pages/Dashboard";
-import EmptyState from "src/pages/EmptyState";
-import Home from "src/pages/Home";
-import Pokemon from "src/pages/Pokemon";
+import PageDashboard from "src/pages/PageDashboard";
+import PageEmptyState from "src/pages/PageEmptyState";
+import PageHome from "src/pages/PageHome";
+import PageDetails from "src/pages/PageDetails";
 
 const router = createBrowserRouter([
   {
     index: true,
-    element: <Home />,
+    element: <PageHome />,
     loader: loadDataForRoutes,
   },
   {
     path: "/:filterType",
-    element: <Dashboard />,
+    element: <PageDashboard />,
     loader: loadDataForRoutes,
-    errorElement: <Home />,
+    errorElement: <PageHome />,
     children: [
       {
         index: true,
-        element: <EmptyState />,
+        element: <PageEmptyState />,
       },
       {
         path: ":pokemonName",
-        element: <Pokemon />,
+        element: <PageDetails />,
         loader: async (args) => {
           await loadDataForRoutes();
           return loadDataForDetails(args);

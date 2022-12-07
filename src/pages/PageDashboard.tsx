@@ -3,7 +3,7 @@ import Sidebar from "src/components/organisms/Sidebar";
 
 const Dashboard = () => {
   return (
-    <div className="flex">
+    <div className="flex 2xl:mx-auto">
       <div className="w-80">
         <Sidebar />
       </div>
