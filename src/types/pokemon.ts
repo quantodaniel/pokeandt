@@ -6,4 +6,5 @@ export type PokemonItem = {
   src: string;
   isFavorite: boolean;
   details?: Pokemon;
+  color?: string;
 };

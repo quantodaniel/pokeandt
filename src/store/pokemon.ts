@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware";
 
 import { PokemonStore } from "src/types/store";
 import { Pokemon } from "pokenode-ts";
+import { FastAverageColor } from "fast-average-color";
+
+const fac = new FastAverageColor();
 
 const persistedStore = persist<PokemonStore>(
   (set, get) => ({
@@ -31,6 +34,16 @@ const persistedStore = persist<PokemonStore>(
       );
 
       newPokemons[pokemonIndex].details = details;
+
+      set({ pokemons: newPokemons });
+    },
+    updatePokemonColor: async () => {
+      const newPokemons = [...get().pokemons];
+
+      for await (const pokemon of newPokemons) {
+        const colors = await fac.getColorAsync(pokemon.src);
+        pokemon.color = colors.hex;
+      }
 
       set({ pokemons: newPokemons });
     },

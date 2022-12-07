@@ -7,4 +7,5 @@ export type PokemonStore = {
   updatePokemonDetails: (details: Pokemon) => void;
   getPokemonByName: (name: string) => PokemonItem | undefined;
   toggleFavoriteById: (id: number) => void;
+  updatePokemonColor: () => Promise<void>;
 };

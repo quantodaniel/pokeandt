@@ -7,7 +7,9 @@ const loadDataForRoutes = async () => {
   if (getState().pokemons.length === 0) {
     const pokemonService = new PokemonService();
     const pokemons = await pokemonService.listPokemons();
+
     setState({ pokemons });
+    getState().updatePokemonColor();
   }
 
   return getState().pokemons;

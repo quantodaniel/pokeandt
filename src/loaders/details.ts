@@ -21,8 +21,8 @@ const loadDataForDetails = async (args: LoaderFunctionArgs) => {
     getState().updatePokemonDetails(details);
   }
 
-  const { details } = getState().getPokemonByName(pokemonName);
-  return details;
+  const pokemonWithDetails = getState().getPokemonByName(pokemonName);
+  return pokemonWithDetails;
 };
 
 export default loadDataForDetails;
