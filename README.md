@@ -1,55 +1,99 @@
-# CI&T Tech Challenge
+# PokeAndT
 
-Hello, we're excited that you've made this far, we are providing you a boilerplate for the technical challenge.
-We've added some dependencies like: React, Redux and Material-ui, but the last one you're free to use
-any UI library that you're comfortable with. Please, write all of your code in English.
+> Simple Pokedéx for ReactJS
 
-## Submission Instructions
+## TL;DR;
 
-* Clone the repository.
-* Make your changes.
-* Send us the repo URL after you're finished.
+### Running the project:
 
-## Problem description:
+```shell
+git clone https://github.com/quantodaniel/pokeandt
+cd pokeandt
+yarn install
+yarn start
+```
 
-Build a Pokedex application using React and Poke API (https://pokeapi.co/). A Pokedex is an
-indexer for pokemons containing the description of each pokemon and its attributes. The API
-you will consume is the Pokémon API which can be found in this link: https://pokeapi.co/
+### List of features:
 
-**The user should be able to search and filter by Pokemons and the Pokemon should have a details page.**
+| Feature                   | Description                       |
+| ------------------------- | --------------------------------- |
+| Home                      | Initial page with the search option |
+| Dashboard                 | Lists all the favorites and the details page |
+| Search                    | Search all by name or just the favorites |
+| Favorite                  | User can add and remove from the favorite list |
+| Compare                   | User can add and remove from the compare list |
 
-While not required, it would be great if the application allowed:
+## Introduction
 
-* Users to compare Pokemons, attributes, etc. and/or included elements like charts to visualize
-  some data.
-* Also be able to add Pokemons to a “favorites” list and filter by only favorite Pokemons.
+This project lets you search for Pokemóns by name and navigate to a simplistic detail page.
 
-You will have two days to complete the challenge, but you can deliver the challenge before
-the deadline. You can use create-react-app to get started and design the visual layout as you’d
-like.
+The following premises were taken for the purpose of this development:
 
-## Guidelines (What we’re looking for):
+- No authentication methods or token validations are in place
+- No responsive layouts or specific breakpoints for any device, best to use on desktop
+- Using Zustand instead of Redux to leverage less boilerplate, and easier steps for testing  
+- Using Tailwind instead of an UI library 
+- Using lib to connect to https://pokeapi.co to leverage the already created interfaces an caching
 
-* We will evaluate the way you structure and write your code—from the standards you use
-to how you name your functions and structure your folders. We’re looking for consistency
-and human-readable code.
-* We want to see your process (i.e., how often you commit your changes, the clarity of
-your commit messages, whether you break large tasks into smaller ones, etc.). Please
-do not make a single commit with two weeks’ worth of changes.
-* We expect to be able to run your code locally on our machines. Please ensure you
-include any environment variables necessary to clone and start up your application.
-* We expect a detailed README.md file outlining steps on how to run your project (feel free to overwite this one).
-* We will also test the usability of your application from a UX perspective, so please
-ensure your application runs properly.
-* We don’t require that you write in Typescript—this is optional. Plain JavaScript is fine.
-But if you do opt to write in Typescript, don’t type everything as any.
+## Installation
 
-## Suggestions:
+First install all the dependencies required to run the project.
 
-* Plot charts with the Pokemons attributes (our suggestion is https://www.amcharts.com/)
-* Create a comparison table between the Pokemon attributes (our suggestion is
-  https://www.ag-grid.com/ sorting, reordering, etc…)
-* Unit tests using https://testing-library.com/docs/react-testing-library/intro/ and jest
-* Any knowledge in automated tests software (cypress, webdriver I/O, selenium)
+PokeAndT requires the following tools to run:
 
-Go Catch ’Em All!! Pokemon trainer
+| Tools          | Installation guide                          |
+| -------------- | ------------------------------------------- |
+| yarn           | https://classic.yarnpkg.com/en/docs/install |
+
+## Running the project:
+
+Clone the repository:
+
+```shell
+git clone https://github.com/quantodaniel/pokeandt
+```
+
+Open your OS Terminal and run these to install all the dependencies:
+
+```shell
+cd pokeandt
+yarn install
+```
+
+Run the project:
+
+```shell
+yarn start
+```
+
+🎉 Now the project should be running on port `3000` 🎉
+
+## Running tests
+
+Open your OS Terminal and run these commands:
+
+```shell
+yarn test --watchAll
+```
+
+## Development
+
+Aiming performance and blazing fast development time this project uses some libs to store data, get colors from images and better communicate with the API.
+
+| Lib                   | Description                                    |
+| --------------------- | ---------------------------------------------- |
+| fast-average-color    | Library that calculates average or dominant color |
+| immer                 | Creat immutable state tree                        |
+| pokenode-ts           | Wrapper for the PokéAPI with built-in types       |
+| react-icons                 | Popular icons for React projects                      |
+| react-router-dom            | React Router enables "client side routing"            |
+| react-search-autocomplete   | Fully customizable search box with autocomplete       |
+| zustand                     | A small, fast and scalable bearbones state-management |
+
+### Word about React Hooks 
+
+Throughout the development was clear that React Hooks like `useCallback`, `useMemo` and `useEffect` was not needed. 
+
+All the required data are being loaded by the router upon change of paths and any other changes are being handled by Zustand, that has its own memoization process in place. 
+
+Also, actions and events are too close to where is used or do not require large amount of processing, which makes the use of those hooks less needed. 
