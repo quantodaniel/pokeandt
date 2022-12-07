@@ -1,13 +1,10 @@
 import { LoaderFunctionArgs } from "react-router-dom";
 import PokemonService from "src/service/PokemonService";
 import usePokemonStore from "src/store/pokemon";
-
-type RequestProps = {
-  pokemonName: string;
-};
+import { RouteParams } from "src/types/request";
 
 const loadDataForDetails = async (args: LoaderFunctionArgs) => {
-  const { pokemonName } = args.params as RequestProps;
+  const { pokemonName } = args.params as RouteParams;
 
   const { getState } = usePokemonStore;
   const pokemon = getState().getPokemonByName(pokemonName);

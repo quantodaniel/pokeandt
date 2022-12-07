@@ -9,9 +9,9 @@ const SidebarCard = (props: PokemonItem) => {
   return (
     <Link
       to={`/search/${name}`}
-      className="drop-shadow w-full p-2 rounded flex items-center gap-4 -z-1 relative hover:text-green-600"
+      className="drop-shadow w-full px-2 py-1 rounded flex items-center gap-4 -z-1 relative hover:text-green-600"
       style={{
-        backgroundImage: `linear-gradient(45deg, ${color}, white 40%)`,
+        backgroundImage: `linear-gradient(45deg, ${color}, white 30%)`,
       }}
     >
       <div className="h-12 w-12">

@@ -1,5 +1,5 @@
 import Button from "src/components/atoms/Button";
-import SearchInput from "src/components/molecules/SearchInput";
+import SearchInput from "src/components/atoms/SearchInput";
 import useSearch from "src/hooks/useSearch";
 import usePokemonStore from "src/store/pokemon";
 

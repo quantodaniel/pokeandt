@@ -6,7 +6,7 @@ import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 type ButtonFavoriteProps = {
   id: PokemonItem["id"];
   isFavorite?: PokemonItem["isFavorite"];
-  icon?: React.ReactNode;
+  icon?: boolean;
 };
 
 const ButtonFavorite = (props: ButtonFavoriteProps) => {
