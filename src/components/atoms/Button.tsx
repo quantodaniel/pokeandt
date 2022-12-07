@@ -8,7 +8,7 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className="border px-4 py-2 hover:border-gray-300 shadow rounded from-slate-50 to-slate-100 bg-gradient-to-br"
+      className="border px-4 py-2 hover:border-gray-300 shadow rounded from-slate-50 to-slate-100 bg-gradient-to-br text-sm"
       onClick={onClick}
     >
       {children}
