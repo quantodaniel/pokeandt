@@ -15,9 +15,10 @@ const loadDataForDetails = async (args: LoaderFunctionArgs) => {
     throw new Response("Not Found", { status: 404 });
   }
 
+  const pokemonService = new PokemonService();
+  const details = await pokemonService.getPokemonByName(pokemon.name);
+
   if (!pokemon?.details) {
-    const pokemonService = new PokemonService();
-    const details = await pokemonService.getPokemonByName(pokemon.name);
     getState().updatePokemonDetails(details);
   }
 

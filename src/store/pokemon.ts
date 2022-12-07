@@ -33,19 +33,26 @@ const persistedStore = persist<PokemonStore>(
         (pokemon) => pokemon.id === details.id
       );
 
-      newPokemons[pokemonIndex].details = details;
+      newPokemons[pokemonIndex].details = {
+        types: details.types,
+      };
 
       set({ pokemons: newPokemons });
     },
     updatePokemonColor: async () => {
       const newPokemons = [...get().pokemons];
 
-      for await (const pokemon of newPokemons) {
-        const colors = await fac.getColorAsync(pokemon.src);
-        pokemon.color = colors.hex;
-      }
+      const promises = newPokemons.map(async (pokemon) => {
+        try {
+          const colors = await fac.getColorAsync(pokemon.src);
+          return { ...pokemon, color: colors.hex };
+        } catch (error) {
+          return { ...pokemon, color: "rgb(148 163 184)" };
+        }
+      });
 
-      set({ pokemons: newPokemons });
+      const pokemonsWithColor = await Promise.all(promises);
+      set({ pokemons: pokemonsWithColor });
     },
   }),
   {
