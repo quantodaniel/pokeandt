@@ -4,7 +4,7 @@ import ButtonFavorite from "./ButtonFavorite";
 
 const SidebarCard = (props: PokemonItem) => {
   const { id, name, src, color, details, isFavorite } = props;
-  const { types } = details;
+  const { types } = details || {};
 
   return (
     <Link
@@ -15,7 +15,7 @@ const SidebarCard = (props: PokemonItem) => {
       }}
     >
       <div className="h-12 w-12">
-        <img src={src} alt={name} />
+        <img src={src} alt={name} data-testid="card-pokemon-image" />
       </div>
 
       <div>

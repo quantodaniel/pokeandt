@@ -24,7 +24,11 @@ const ButtonFavorite = (props: ButtonFavoriteProps) => {
   if (icon) {
     return (
       <button onClick={toggleFavorite}>
-        {isFavorite ? <FaBookmark /> : <FaRegBookmark />}
+        {isFavorite ? (
+          <FaBookmark data-testid="icon-bookmarked" />
+        ) : (
+          <FaRegBookmark data-testid="icon-bookmark" />
+        )}
       </button>
     );
   }

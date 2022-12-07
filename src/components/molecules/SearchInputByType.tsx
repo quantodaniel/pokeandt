@@ -30,6 +30,7 @@ const SearchInputByType = () => {
           name="filterType"
           checked={filterFavorites}
           onChange={toggleFilterType}
+          data-testid="checkbox-filter-by-type"
         />
         Search only by favorites
       </label>

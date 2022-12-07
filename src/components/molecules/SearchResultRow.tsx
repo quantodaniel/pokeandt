@@ -17,7 +17,9 @@ const SearchResultRow = (props: PokemonItem) => {
       <div className="flex flex-1">
         <h1 className="text-lg capitalize">{name}</h1>
       </div>
-      <div className="mx-2">{isFavorite && <FaBookmark />}</div>
+      <div className="mx-2">
+        {isFavorite && <FaBookmark data-testid="icon-favorite" />}
+      </div>
     </div>
   );
 };
