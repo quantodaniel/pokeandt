@@ -3,9 +3,12 @@ import useSearch from "src/hooks/useSearch";
 import usePokemonStore from "src/store/pokemon";
 import Logo from "../atoms/Logo";
 import SearchInput from "../molecules/SearchInput";
+import SidebarCard from "../molecules/SidebarCard";
 
 const Sidebar = () => {
   const pokemons = usePokemonStore((state) => state.pokemons);
+  const favorites = usePokemonStore((state) => state.favorites);
+
   const { onSearch, onSelect } = useSearch(pokemons);
 
   return (
@@ -25,16 +28,11 @@ const Sidebar = () => {
         <SearchInput onSearch={onSearch} onSelect={onSelect} items={pokemons} />
       </div>
 
-      <ul>
-        <li>
-          <NavLink to="/search/bulbasaur">bulbasaur</NavLink>
-        </li>
-        <li>
-          <NavLink to="/search/venusaur">venusaur</NavLink>
-        </li>
-      </ul>
-
-      <h1>{pokemons.length}</h1>
+      <div className="flex flex-1 flex-col gap-2 overflow-auto">
+        {favorites?.map((pokemon) => (
+          <SidebarCard key={pokemon.id} {...pokemon} />
+        ))}
+      </div>
     </aside>
   );
 };

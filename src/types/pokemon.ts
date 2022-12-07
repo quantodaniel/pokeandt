@@ -5,6 +5,8 @@ export type PokemonItem = {
   name: string;
   src: string;
   isFavorite: boolean;
-  details?: Pokemon;
+  details?: {
+    types: Pokemon["types"];
+  };
   color?: string;
 };
