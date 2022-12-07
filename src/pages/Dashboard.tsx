@@ -1,24 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Sidebar from "src/components/organisms/Sidebar";
 
 const Dashboard = () => {
   return (
-    <div>
-      <header>
-        <h1>Dashboard</h1>
-      </header>
+    <div className="flex">
+      <div className="w-80">
+        <Sidebar />
+      </div>
 
-      <aside>
-        <ul>
-          <li>
-            <NavLink to="/pokemon/bulbasaur">bulbasaur</NavLink>
-          </li>
-          <li>
-            <NavLink to="/pokemon/venusaur">venusaur</NavLink>
-          </li>
-        </ul>
-      </aside>
-
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
     </div>
