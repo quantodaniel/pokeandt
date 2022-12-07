@@ -11,10 +11,10 @@ export const removeTrailingSlash = (url: string) => {
 };
 
 export const extractPokemonId = (url: string) => {
-  return removeTrailingSlash(url).split("/").pop();
+  return Number(removeTrailingSlash(url).split("/").pop());
 };
 
-export const getPokemonImageById = (pokemonId: string) => {
+export const getPokemonImageById = (pokemonId: number) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
 };
 
@@ -28,6 +28,7 @@ export const formatPokemonList = (
       ...pokemon,
       id: pokemonId,
       src: getPokemonImageById(pokemonId),
+      isFavorite: false,
     };
   });
 };

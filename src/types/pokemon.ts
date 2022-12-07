@@ -1,5 +1,9 @@
+import { Pokemon } from "pokenode-ts";
+
 export type PokemonItem = {
-  id: string;
+  id: number;
   name: string;
   src: string;
+  isFavorite: boolean;
+  details?: Pokemon;
 };

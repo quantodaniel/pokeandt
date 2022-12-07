@@ -9,8 +9,12 @@ class PokemonService {
   }
 
   public async listPokemons() {
-    const response = await this.api.listPokemons(0, 1200);
-    return formatPokemonList(response.results);
+    const res = await this.api.listPokemons(0, 1200);
+    return formatPokemonList(res.results);
+  }
+
+  public async getPokemonByName(name: string) {
+    return await this.api.getPokemonByName(name); 
   }
 }
 
