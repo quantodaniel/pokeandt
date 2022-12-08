@@ -1,5 +1,10 @@
+import { FastAverageColor } from "fast-average-color";
+import usePokemonStore from "src/store/pokemon";
 import { PokemonItem } from "src/types/pokemon";
 import { PokemonResponse } from "src/types/response";
+
+const fac = new FastAverageColor();
+const { getState } = usePokemonStore;
 
 export const getRandomItem = <T>(itemList: T[]) => {
   const randomIndex = Math.floor(Math.random() * itemList.length);
@@ -31,4 +36,15 @@ export const formatPokemonList = (
       isFavorite: false,
     };
   });
+};
+
+export const updatePokemonColor = async (pokemon: PokemonItem) => {
+  if (pokemon.color) return;
+
+  try {
+    const colors = await fac.getColorAsync(pokemon.src);
+    getState().updatePokemonColor(pokemon, colors.hex);
+  } catch (error) {
+    getState().updatePokemonColor(pokemon, "rgb(148 163 184)");
+  }
 };

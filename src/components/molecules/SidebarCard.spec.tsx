@@ -18,7 +18,7 @@ describe("SidebarCard", () => {
 
   it("should render the correct image", () => {
     renderWithRouter(<SidebarCard {...pokemon} details={details} />);
-    expect(screen.getByTestId("card-pokemon-image")).toHaveAttribute(
+    expect(screen.getByTestId("pokemon-image")).toHaveAttribute(
       "src",
       pokemon.src
     );

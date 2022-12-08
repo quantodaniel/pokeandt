@@ -4,6 +4,7 @@ import ButtonFavorite from "src/components/molecules/ButtonFavorite";
 import CardDetailHeader from "src/components/molecules/CardDetailHeader";
 import CardDetailStats from "src/components/molecules/CardDetailStats";
 import { PokemonItem } from "src/types/pokemon";
+import PokemonImage from "../atoms/PokemonImage";
 
 type PokemonDetailsProps = {
   pokemon: PokemonItem;
@@ -34,7 +35,7 @@ const PokemonDetails = (props: PokemonDetailsProps) => {
 
         <div className="col-span-5 flex justify-end">
           <div className={classNameImage}>
-            <img src={pokemon.src} alt={pokemon.name} width="100%" />
+            <PokemonImage {...pokemon} />
           </div>
         </div>
       </div>

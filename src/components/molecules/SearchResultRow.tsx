@@ -1,8 +1,9 @@
 import { FaBookmark } from "react-icons/fa";
 import { PokemonItem } from "src/types/pokemon";
+import PokemonImage from "../atoms/PokemonImage";
 
 const SearchResultRow = (props: PokemonItem) => {
-  const { name, src, isFavorite, color } = props;
+  const { name, isFavorite, color } = props;
 
   return (
     <div
@@ -12,7 +13,7 @@ const SearchResultRow = (props: PokemonItem) => {
       }}
     >
       <div className="h-12 w-12">
-        <img src={src} alt={name} />
+        <PokemonImage {...props} />
       </div>
       <div className="flex flex-1">
         <h1 className="text-lg capitalize">{name}</h1>
