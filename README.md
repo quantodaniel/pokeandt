@@ -2,7 +2,8 @@
 
 > Simple Pokedéx for ReactJS
 
-## TL;DR;
+## Demo
+### https://pokeandt.vercel.app/
 
 ### Running the project:
 
